@@ -11,13 +11,13 @@ namespace ariel
         return this->bullets;
     }
 
-    bool Cowboy::hasbullets() const{
+    bool Cowboy::hasboolets() const{
             return bullets > 0;
     }
 
 
     void Cowboy::shoot(Character* enemy){
-       if( !(enemy->isAlive()) || !hasbullets()){
+       if( !(enemy->isAlive()) || !hasboolets()){
             cout << "No one was shot. Cowboy is either dead or has no bullets." << endl;
             return;
         }
