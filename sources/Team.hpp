@@ -20,6 +20,7 @@ namespace ariel {
     public:
         Team(Character* leader);
         Character* chose_enemy(Team* enemyTeam);
+        Character* getLeader() const;
         void setLeader(Character* new_leader);
         void add(Character* fighter);
         void attack(Team* enemy);

@@ -9,9 +9,15 @@ namespace ariel {
     }
 
     void Team::add(Character* fighter) {
+        if(fighters.size() == 10){
+            throw runtime_error("There are no more places in the group");
+        }
         if (fighters.size() < 10) {
             fighters.push_back(fighter);
         }
+    }
+    Character* Team::getLeader() const {
+    return this->leader;
     }
 
     void Team::setLeader(Character* new_leader) {
