@@ -17,9 +17,17 @@ namespace ariel
 
 
     void Cowboy::shoot(Character* enemy){
-       if( !(enemy->isAlive()) || !hasboolets()){
-            cout << "No one was shot. Cowboy is either dead or has no bullets." << endl;
+        if(!(this->hasboolets())){
             return;
+        }
+        if(!(this->isAlive())){
+            throw runtime_error("Dead character cant do shoot"); 
+        }
+        if(enemy == this){
+            throw runtime_error("No self harm"); 
+        }
+       if( !(enemy->isAlive())){
+            throw runtime_error("Cowboy is either dead or has no bullets"); 
         }
         enemy->hit(10);
         this->bullets --;
@@ -27,7 +35,11 @@ namespace ariel
     }
 
     void Cowboy::reload(){
+        if(this->isAlive()){
         bullets = 6;
+        }else{
+            throw runtime_error("The cowboy is dead cant reload");
+        }
     }
 
     string Cowboy::print() {

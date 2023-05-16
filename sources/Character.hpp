@@ -10,6 +10,8 @@ namespace ariel
 {
     class Character{
     private:
+    bool member;
+    bool leader;
     string name;
     Point location;
     int hitp;
@@ -23,6 +25,10 @@ namespace ariel
     Character(Character&& other)noexcept; // Move constructor
     Character& operator=(Character&& other)noexcept; 
     virtual ~Character() = default;
+    bool get_is_member();
+    void set_is_member();
+    void set_is_leader();
+    bool get_is_leader();
     int getHP();
     string getName();
     bool isAlive();

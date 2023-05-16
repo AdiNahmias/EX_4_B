@@ -59,12 +59,31 @@ bool Character::isAlive(){
     return hitp > 0;
 }
 
+bool Character::get_is_member(){
+    return member; 
+}
+
+void Character::set_is_member(){
+    member = true;
+}
+
+bool Character::get_is_leader(){
+    return leader; 
+}
+
+void Character::set_is_leader(){
+    leader = true;
+}
+
 double Character::distance(Character* other){
     double distance = this->location.distance(other->location);
     return distance;
 }
 
 void Character::hit(int amount) {
+    if(amount < 0){
+        throw invalid_argument("cant hit with a negative number");
+    }
     hitp -= amount;
 }
 

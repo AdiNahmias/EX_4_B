@@ -9,6 +9,9 @@
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
 #include <vector>
+#include <stdexcept>
+#include <limits>
+#include <numeric>
 using namespace std;
 
 namespace ariel {
@@ -25,7 +28,7 @@ namespace ariel {
         void add(Character* fighter);
         void attack(Team* enemy);
         int stillAlive() const;
-        string print() const;
+        void print() const;
     };
 }
 

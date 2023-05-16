@@ -223,7 +223,6 @@ TEST_SUITE("Battle related methods") {
         CHECK_FALSE(cowboy->hasboolets());
         CHECK_NOTHROW(cowboy->shoot(target)); // This should not damage the target
         cowboy->reload();
-
         shoot(2);
         cowboy->reload();
         shoot(6);

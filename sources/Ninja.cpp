@@ -1,5 +1,6 @@
 #include "Ninja.hpp"
 #include <cmath>
+#include <stdexcept>
 
 namespace ariel
 {
@@ -39,14 +40,31 @@ namespace ariel
 
     void Ninja::slash(Character* enemy){
 
-        if (isAlive()){
+        if(!(this->isAlive())){
+            throw runtime_error("Dead character cant do slash"); 
+        }
+
+        if(enemy == this){
+            throw runtime_error("No self harm"); 
+        }
+
+        if(enemy->isAlive()){
             // Calculate the distance between the ninja and the enemy
             double distance = this->getLocation().distance(enemy->getLocation());
             // Check if the enemy is less than 1 meter away
-            if (distance < 1.0) {
+            if (distance <= 1.0) {
                 enemy->hit(40);
             }
+        }else{
+            throw runtime_error("Cant do slash to dead character");
         }
+    }
+
+    string Ninja::print(){
+    string ans = "Ninja:";
+    ans += Character::print();
+    return ans;
+    
     }
 
 
