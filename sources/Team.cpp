@@ -75,8 +75,8 @@ void Team::attack(Team* enemy){
         throw runtime_error("Attacking a dead team");
     }
     
+    //check if there the leader is alive and find another one if he is dead
     if (!(leader->isAlive())) {
-        //choose other leader
         double dist = 0;
         double min_dist = numeric_limits<double>::max();
         Character* new_one;
