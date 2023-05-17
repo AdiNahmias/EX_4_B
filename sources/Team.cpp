@@ -29,9 +29,18 @@ namespace ariel {
             throw runtime_error("There are no more places in the group");
         }
         if (fighters.size() < 10) {
-            fighters.push_back(fighter);
+            if(Cowboy* cowboy = dynamic_cast<Cowboy*>(fighter)){
+            fighters.insert(fighters.begin(),fighter);
+            }else{
+                fighters.push_back(fighter);
+            }
         }
     }
+
+    vector<Character*>& Team::getFighters(){
+        return fighters;
+    }
+    
     Character* Team::getLeader() const {
     return this->leader;
     }

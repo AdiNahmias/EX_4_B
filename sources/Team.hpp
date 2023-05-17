@@ -24,8 +24,9 @@ namespace ariel {
         Team(Character* leader);
         Character* chose_enemy(Team* enemyTeam);
         Character* getLeader() const;
+        vector<Character*>& getFighters();
         void setLeader(Character* new_leader);
-        void add(Character* fighter);
+        virtual void add(Character* fighter);
         void attack(Team* enemy);
         int stillAlive() const;
         void print() const;

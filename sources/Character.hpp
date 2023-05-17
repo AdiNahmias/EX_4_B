@@ -10,8 +10,8 @@ namespace ariel
 {
     class Character{
     private:
-    bool member;
-    bool leader;
+    bool member=false;
+    bool leader=false;
     string name;
     Point location;
     int hitp;
