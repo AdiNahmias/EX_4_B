@@ -67,15 +67,15 @@ namespace ariel {
 
 void Team::attack(Team* enemy){
 
-    if (enemy==nullptr){
-       throw invalid_argument("Enemy nullptr");
+    if (enemy==nullptr || leader==nullptr){
+       throw invalid_argument("Enemy/leader is nullptr");
     }
 
     if((enemy->stillAlive()) == 0 || (this->stillAlive()) == 0){
         throw runtime_error("Attacking a dead team");
     }
     
-    if (!leader && !(leader->isAlive())) {
+    if (!(leader->isAlive())) {
         //choose other leader
         double dist = 0;
         double min_dist = numeric_limits<double>::max();
