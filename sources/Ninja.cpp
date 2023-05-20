@@ -61,7 +61,7 @@ namespace ariel
     }
 
     string Ninja::print(){
-    string ans = "Ninja:";
+    string ans = "N: ";
     ans += Character::print();
     return ans;
     

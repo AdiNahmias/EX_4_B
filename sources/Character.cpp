@@ -97,7 +97,13 @@ void Character::setLocation(Point location){
 
 string Character::print(){
     string str_point = this->location.print();
-    string ans = "Name:"+ this->name +", Location:"+ str_point + ", Hit point:"+ to_string(hitp);
+
+    string ans = "Name:"+ this->name +", Location:"+ str_point;
+    if(hitp > 0){
+        ans += ", Hit point:"+ to_string(hitp);
+    }else{
+        ans += ", Hit point:0";
+    }
     return ans;
     
     }

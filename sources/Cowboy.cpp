@@ -43,10 +43,10 @@ namespace ariel
     }
 
     string Cowboy::print() {
-        string str_point = this->getLocation().print();  // Assuming the Character class has a getLocation() function
-        string ans = "Name: " + this->getName() + ", Location: " + str_point + ", Hit point: " + to_string(this->getHP())+
-        ", Bullets: " +to_string(this->bullets);
+        string ans = "C: ";
+        ans += Character::print();
         return ans;
+    
     }
 
     
