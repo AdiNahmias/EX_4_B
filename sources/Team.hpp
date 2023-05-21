@@ -22,6 +22,11 @@ namespace ariel {
 
     public:
         Team(Character* leader);
+        virtual ~Team() = default;
+        Team(const Team& other);
+        Team& operator=(const Team& other);
+        Team& operator=(Team&& other) = default;
+        Team(Team&& other) = default;
         Character* chose_enemy(Team* enemyTeam);
         Character* getLeader() const;
         vector<Character*>& getFighters();

@@ -19,6 +19,22 @@ namespace ariel {
         leader->set_is_leader();
     }
 
+    Team::Team(const Team& other) : leader(other.leader){
+            // Copy the state of the `other` object
+            // to the new `Team` object
+            // ...
+    }
+
+    Team& Team::operator=(const Team& other) {
+        if (this != &other) {
+            // Copy the state of the `other` object
+            // to the current object
+            // ...
+        }
+        return *this;
+    }
+
+
     void Team::add(Character* fighter) {
         if(fighter->get_is_member()){
             throw runtime_error("This member already a member");
