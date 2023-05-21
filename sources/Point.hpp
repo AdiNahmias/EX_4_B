@@ -9,11 +9,12 @@ namespace ariel {
         double p_x;
         double p_y;
     public:
+        Point();
         Point(double p_x, double p_y);
         double getX()const;
         double getY()const;
         double distance(const Point& other) const;
-        static Point moveTowards(Point& src, Point& dest, double dist);
+        Point static moveTowards(Point& src, Point& dest, double dist);
         string print();
     };
 }

@@ -6,10 +6,16 @@ using namespace std;
 
 namespace ariel
 {
+    Point::Point(){
+        this->p_x = 0;
+        this->p_y=0;
+    }
+    
     Point::Point(double p_x, double p_y){
         this->p_x = p_x;
         this->p_y = p_y;
     }
+
 
     double Point::getX() const{
         return this->p_x;

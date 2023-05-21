@@ -20,23 +20,23 @@ namespace ariel
     public:
         Character(const string& name, const Point& location, int hitp);
         Character(const string& name, const Point& location);
-        Character(const Character& other); // Copy constructor
-        Character& operator=(const Character& other); // Copy assignment operator
-        Character(Character&& other)noexcept; // Move constructor
-        Character& operator=(Character&& other)noexcept; 
+        Character(const Character&) = delete; // delete copy constructor
+        Character& operator=(const Character&) = delete; // delete copy assignment operator
+        Character(Character&&) = delete; // delete move constructor
+        Character& operator=(Character&&) = delete; // delete move assignment operator
         virtual ~Character() = default;
         bool get_is_member();
         void set_is_member();
         void set_is_leader();
         bool get_is_leader();
         int getHP();
-        string getName();
-        bool isAlive();
+        string getName() const;
+        bool isAlive() const;
         double distance(Character* other);
         void hit(int amount);
-        Point& getLocation();
+        const Point& getLocation() const;
         void setLocation(Point location);
-        virtual string print();
+        virtual string print() = 0;
         
     };
 }

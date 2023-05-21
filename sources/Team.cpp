@@ -18,6 +18,11 @@ namespace ariel {
         }
         leader->set_is_leader();
     }
+    Team::~Team(){
+        for(Character* fighter : fighters){
+            delete fighter;
+        }
+    }
 
     Team::Team(const Team& other) : leader(other.leader){
             // Copy the state of the `other` object
@@ -66,7 +71,7 @@ namespace ariel {
     }
 
     Character* Team::chose_enemy(Team* enemyTeam){
-    Character* my_enemy;
+    Character* my_enemy = nullptr;
     double dist = 0;
     double min_dist = numeric_limits<double>::max();
     for (Character* enemy : enemyTeam->fighters) {
@@ -95,7 +100,7 @@ void Team::attack(Team* enemy){
     if (!(leader->isAlive())) {
         double dist = 0;
         double min_dist = numeric_limits<double>::max();
-        Character* new_one;
+        Character* new_one = nullptr;
         for(Character *new_leader: fighters){
             if(new_leader->isAlive()){
                 dist = new_leader->distance(leader);

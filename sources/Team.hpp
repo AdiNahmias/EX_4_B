@@ -22,7 +22,7 @@ namespace ariel {
 
     public:
         Team(Character* leader);
-        virtual ~Team() = default;
+        virtual ~Team();
         Team(const Team& other);
         Team& operator=(const Team& other);
         Team& operator=(Team&& other) = default;
