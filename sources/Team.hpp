@@ -27,12 +27,12 @@ namespace ariel {
         Team& operator=(const Team& other);
         Team& operator=(Team&& other) = default;
         Team(Team&& other) = default;
-        Character* chose_enemy(Team* enemyTeam);
+        Character* choose_enemy(Team* enemyTeam);
         Character* getLeader() const;
         vector<Character*>& getFighters();
         void setLeader(Character* new_leader);
         virtual void add(Character* fighter);
-        void attack(Team* enemy);
+        virtual void attack(Team* enemy);
         int stillAlive() const;
         void print() const;
     };

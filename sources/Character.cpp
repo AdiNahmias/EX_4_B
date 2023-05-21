@@ -15,7 +15,6 @@ Character::Character(const string& name, const Point& location)
     : name(name), location(location)
 {}
 
-
 int Character::getHP(){
     return  this->hitp;
 }
@@ -65,14 +64,15 @@ void Character::setLocation(Point location){
 }
 
 string Character::print(){
+    string ans="";
     string str_point = this->location.print();
-
-    string ans = "Name:"+ this->name +", Location:"+ str_point;
-    if(hitp > 0){
-        ans += ", Hit point:"+ to_string(hitp);
+    if(hitp <= 0){
+        ans = " Name: ("+ this->name+ ") ";
     }else{
-        ans += ", Hit point:0";
+    ans = " Name: "+ this->name;
+    ans += ", Hit point:"+ to_string(hitp);
     }
+    ans += ", Location:"+ str_point;
     return ans;
     
     }

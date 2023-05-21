@@ -16,7 +16,8 @@ namespace ariel {
     class SmartTeam : public Team {
     public:
         SmartTeam(Character* leader);
-        
+        void attack(Team* enemy) override;
+        Character* get_best_enemy(Team* enemyTeam, Character* attacker);
         
     };
 }

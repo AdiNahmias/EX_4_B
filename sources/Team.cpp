@@ -70,7 +70,7 @@ namespace ariel {
         this->leader = new_leader;
     }
 
-    Character* Team::chose_enemy(Team* enemyTeam){
+    Character* Team::choose_enemy(Team* enemyTeam){
     Character* my_enemy = nullptr;
     double dist = 0;
     double min_dist = numeric_limits<double>::max();
@@ -115,7 +115,7 @@ void Team::attack(Team* enemy){
 
     Character* closestEnemy = nullptr;
     if(enemy->stillAlive() >0){
-        closestEnemy = chose_enemy(enemy);
+        closestEnemy = choose_enemy(enemy);
     }
 
     for(Character* fighter : fighters){
@@ -139,7 +139,7 @@ void Team::attack(Team* enemy){
                 }
             }
             else{
-                Character* new_enemy = chose_enemy(enemy);
+                Character* new_enemy = choose_enemy(enemy);
                 closestEnemy = new_enemy;
                 if(closestEnemy !=nullptr && closestEnemy->isAlive()){
                     if (Cowboy* cowboy = dynamic_cast<Cowboy*>(fighter)){

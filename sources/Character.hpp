@@ -10,6 +10,7 @@ namespace ariel
 {
     class Character{
     private:
+        int priority_enemy = 0;
         bool member=false;
         bool leader=false;
         string name;
