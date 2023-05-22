@@ -6,32 +6,40 @@ namespace ariel {
 
 
     Character* SmartTeam::get_best_enemy(Team* enemyTeam, Character* attacker){
-        int priority = 0;
-        int min_priority = numeric_limits<double>::max();
+        
+        
+        if(attacker == nullptr || !attacker->isAlive() || enemyTeam->stillAlive() == 0 ){
+            return nullptr;
+        }
+
+        double priority = numeric_limits<double>::max();
+        double min_priority = numeric_limits<double>::max();
         Character* best_enemy = nullptr;
 
         Cowboy* cowboy = dynamic_cast<Cowboy*>(attacker);
+        
         for(Character* enemy : enemyTeam->getFighters()){
-        if(cowboy != nullptr){
-            priority = (enemy->getHP()/10);
-            
-        }else{
-            Ninja* ninja = dynamic_cast<Ninja*>(attacker);
-            if(ninja->distance(enemy) <= 1){
-                priority = (enemy->getHP()/40);
-            }else{
-                ninja->move(enemy);
+            if(enemy != nullptr && enemy->isAlive()){
+                if(cowboy != nullptr){
+                    priority = (enemy->getHP()/10);
+                    
+                }else{
+                    Ninja* ninja = dynamic_cast<Ninja*>(attacker);
+                    if(ninja->distance(enemy) <= 1){
+                        priority = (enemy->getHP()/40);
+                    }
+                    else{
+                        priority = ninja->distance(enemy);
+                    }
+                }
+            }
+            if(priority < min_priority){
+                min_priority = priority;
+                best_enemy = enemy;
             }
         }
-
-        if(priority < min_priority){
-            min_priority = priority;
-            best_enemy = enemy;
-        }
         
-    }
-    return best_enemy;
-
+        return best_enemy;
     }
 
     
@@ -63,24 +71,37 @@ namespace ariel {
         //------------------------------------------------
         Character* bestEnemy = nullptr;
         for(Character* fighter : getFighters()){
-            if(enemy->stillAlive() > 0){
-                if(fighter != nullptr && fighter->isAlive()){
+            
+            bestEnemy = get_best_enemy(enemy,fighter);
+
+            if(bestEnemy == nullptr || !bestEnemy->isAlive()){
+                if(enemy->stillAlive() == 0){
+                    return;
+                }
                 bestEnemy = get_best_enemy(enemy,fighter);
-                }
             }
+            
             if(bestEnemy != nullptr && bestEnemy->isAlive()){
-                if (Cowboy* cowboy = dynamic_cast<Cowboy*>(fighter)){
-                    if(cowboy && cowboy->hasboolets()){
-                    cowboy->shoot(bestEnemy);
+                if(fighter != nullptr && fighter->isAlive()){
+                    if (Cowboy* cowboy = dynamic_cast<Cowboy*>(fighter)){
+                        if(cowboy != nullptr && cowboy->hasboolets()){
+                            cowboy->shoot(bestEnemy);
+                        }else{
+                            cowboy->reload();  
+                        }
                     }else{
-                      cowboy->reload();  
+                        Ninja* ninja = dynamic_cast<Ninja*>(fighter);
+                        if(ninja->distance(bestEnemy) <= 1){
+                            ninja->slash(bestEnemy);
+                        }
+                        else{
+                            ninja->move(bestEnemy);
+                        }
+                        
                     }
-                }else{
-                    Ninja* ninja = dynamic_cast<Ninja*>(fighter);
-                    ninja->slash(bestEnemy);
-                    
                 }
             }
+            
         }
     }
 
